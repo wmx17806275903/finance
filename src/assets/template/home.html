@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <!-- 引入 ECharts 文件 -->
+    <script src="../resource/Echarts/echarts.min.js"></script>
+    <title>HomeBudget</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+      <link href="../resource/bootstrap-4.5.0-examples/assets/dist/css/bootstrap.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="../resource/bootstrap-4.5.0-examples/album/album.css" rel="stylesheet">
+  </head>
+<body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">HomeBudget</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#home.html">exit</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container-fluid">
+      <div class="row" style="display:flex;justify-content: space-between;">
+            <nav id="sidebarMenu" class="d-md-block bg-light sidebar collapse">
+              <div class="sidebar-sticky pt-3">
+                <ul class="nav flex-column">
+                  <li class="nav-item" style="display:flex;justify-content: space-between;">
+                    <a class="nav-link active dropdown-toggle " href="#">
+                      <span data-feather="home"></span>
+                      expenses <span class="sr-only">(current)</span>
+                    </a>
+                      <a style="margin-top:5px;">222</a>
+                  </li>
+                  <li class="nav-item" style="display:flex;justify-content: space-between;">
+                    <a class="nav-link" href="#">
+                      <span data-feather="file"></span>
+                      budget
+                    </a>
+                      <a style="margin-top:5px;">222</a>
+                  </li>
+                  <li class="nav-item" style="display:flex;justify-content: space-between;">
+                    <a class="nav-link" href="#">
+                      <span data-feather="shopping-cart"></span>
+                      income
+                    </a>
+                      <a style="margin-top:5px;margin-left:200px;">222</a>
+                  </li>
+                  <li class="nav-item" style="display:flex;justify-content: space-between;">
+                    <a class="nav-link" href="#">
+                      <span data-feather="users"></span>
+                      ...
+                    </a>
+                      <a style="margin-top:5px;">222</a>
+                  </li>
+                  <li class="nav-item" style="display:flex;justify-content: space-between;">
+                    <a class="nav-link" href="#">
+                      <span data-feather="bar-chart-2"></span>
+                      ...
+                    </a>
+                      <a style="margin-top:5px;">222</a>
+                  </li>
+                  <li class="nav-item" style="display:flex;justify-content: space-between;">
+                    <a class="nav-link" href="#">
+                      <span data-feather="layers"></span>
+                      ...
+                    </a>
+                      <a style="margin-top:5px;">222</a>
+                  </li>
+                </ul>
+                  <button class="btn btn-primary" type="button">Add</button>
+              </div>
+            </nav>
+
+          <div class="col-6">
+              <input type="button" value="bar">
+              <input type="button" value="pie">
+              <div id="main" style="width:100%;height:500px;"></div>
+          </div>
+
+          <div class="col-3">
+              <input type="button" value="By Catagory">
+              <input type="button" value="By Date">
+              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Rent</span>
+              <button class="btn btn-primary" type="button" style="text-align:center;">+</button>
+              </h6>
+              <ul class="nav flex-column mb-2">
+                  <li class="nav-item" style="display:flex;justify-content: space-between;">
+                    <a class="nav-link active" href="#">
+                      <span data-feather="home"></span>
+                      houseFee <span class="sr-only">(current)</span>
+                    </a>
+                      <a>0</a>
+                  </li>
+              </ul>
+              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Utilities</span>
+              <button class="btn btn-primary" type="button" style="text-align:center;">+</button>
+              </h6>
+              <ul class="nav flex-column mb-2">
+                  <li class="nav-item" style="display:flex;justify-content: space-between;">
+                    <a class="nav-link active" href="#">
+                      <span data-feather="home"></span>
+                      water <span class="sr-only">(current)</span>
+                    </a>
+                      <a>0</a>
+                  </li>
+                  <li class="nav-item" style="display:flex;justify-content: space-between;">
+                    <a class="nav-link active" href="#">
+                      <span data-feather="home"></span>
+                      power <span class="sr-only">(current)</span>
+                    </a>
+                      <a>0</a>
+                  </li>
+              </ul>
+          </div>
+
+      </div>
+    </div>
+    <div id="pan" style="width:309px;height:300px;"></div>
+
+    <a class="btn btn-primary" type="button" href="report.html">Report</a>
+
+</body>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            tooltip: {},
+            legend: {
+                data:['销量']
+            },
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        var myChart1 = echarts.init(document.getElementById('pan'));
+        option1 = {
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b}: {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 10,
+                data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: ['50%', '70%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: [
+                        {value: 335, name: '直接访问'},
+                        {value: 310, name: '邮件营销'},
+                        {value: 234, name: '联盟广告'},
+                        {value: 135, name: '视频广告'},
+                        {value: 1548, name: '搜索引擎'}
+                    ]
+                }
+            ]
+        };
+
+        myChart1.setOption(option1);
+        </script>
+</html>

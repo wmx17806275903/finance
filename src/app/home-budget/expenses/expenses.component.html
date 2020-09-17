@@ -1,0 +1,102 @@
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">HomeBudget</a>
+</nav>
+<div class="light" style="margin-top:10px; display:flex;justify-content: space-between;">
+
+    <!--The first column:menu bar-->
+    <div class="col-2 sidebar-sticky pt-3 bg-light">
+      <!-- <input type="date" id="date" style="height:40px;width:100%;" value={{day}} date-date-format="MM/dd/yyyy"/> -->
+      <div class="card">
+        <ul class="list-group list-group-flush" *ngFor="let category of home">
+          <li class="list-group-item" style="display:flex;justify-content: space-between;" routerLink="/home/{{category.name}}">
+          <a contentEditable="false"  style="border:none;max-width:130px">{{category.name}}</a>
+          <a style="margin-top:5px;" contentEditable="false" style="border:none;min-width:20px">${{category.value}}</a>
+          </li>
+          <!--first version to add categories.
+          <li class="nav-item" style="display:flex;justify-content: space-between;" *ngIf="clickAdd">
+              <a class="nav-link active dropdown-toggle ">
+                <span data-feather="home"></span>
+                <input type="text" value="categroy"> <span class="sr-only">(current)</span>
+              </a>
+              <a style="margin-top:5px;"><input type="text" value="value"></a>
+          </li>
+          -->
+        </ul>
+        <!--
+        <button type="button" class="btn btn-dark" (click)="keyUp()">Add</button>
+        -->
+      </div>
+      <div style="text-align:center;margin-top:20px">
+        <span>Available</span>
+        <br/><a>${{available}}</a>
+        <br/><a>Expense as % of Budget</a>
+      </div>
+      <div  echarts [options]="budgetUsage"></div>
+      <a class="btn btn-outline-dark" routerLink="/report" style="position: absolute;bottom: 15%;left: 64px;">Report</a>
+    </div>
+
+    <!--The second column:visualization-->
+    <div class="col-6 sidebar-sticky pt-3">
+        <input class="btn btn-outline-dark" type="button" value="bar" (click)="isBar()">
+
+        <input class="btn btn-outline-dark" type="button" value="pie" (click)="isPie()" style="margin-left:5px;">
+        <div class="card"></div>
+        <div id="main" *ngIf="showBar" echarts [options]="option"></div>
+        <div id="pan" *ngIf="!showBar" echarts [options]="optionPie"></div>
+    </div>
+
+    <!--The third column:detail items-->
+    <!-- <div class="sidebar-sticky pt-3 accordion">
+        <input class="btn btn-outline-dark" type="button" value="By Catagory" (click)="isCategory()">
+        <input class="btn btn-outline-dark" type="button" value="By Date" (click)="isDate()" style="margin-left:5px;">
+
+        <svg (click)="insertItem()" style="float:right;margin-top:5px;" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-border-width col-md-3 offset-md-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 3.5A.5.5 0 0 1 .5 3h15a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-2zm0 5A.5.5 0 0 1 .5 8h15a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1zm0 4a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+        <div class="card"></div>
+
+        <div class="row">
+            <div class="col">
+            <div class="card-header" *ngIf="showCategory">
+            <ul class="nav flex-column mb-2" *ngFor="let item of expenseDetail;let i=index">
+                <li (dblclick)="keyUp(i)" contentEditable="true" class="sidebar-heading d-flex justify-content-between align-items-center btn btn-dark dropdown-toggle" (click)="handleVisibleRent(i)" (contextmenu)="deleteItem(i)">
+                <a style="color:#fff;">{{item.categoryName}}</a>
+                </li>
+                <div *ngIf="showExpenseDetail[i]">
+                <ul class="list-group list-group-flush" *ngFor="let detail of item.expenseItems">
+                    <li contentEditable="true" class="list-group-item nav-item" style="display:flex;justify-content: space-between;" >
+                    <a class="nav-link active">
+                        <span data-feather="home"></span>
+                        {{detail.categoryName}} <span class="sr-only">(current)</span>
+                    </a>
+                        <a>${{detail.value}}</a>
+                    </li>
+                </ul>
+                </div>
+            </ul>
+            </div>
+            <div class="card-header" *ngIf="!showCategory">
+            <ul class="nav flex-column" *ngFor="let item of expenseDetail">
+            <a *ngFor="let detail of item.expenseItems">
+                <li class="btn btn-dark" style="display:flex;justify-content: space-between;">
+                <a>{{detail.date}}</a>
+                <a>{{detail.categoryName}}</a>
+                <a>${{detail.value}}</a>
+                </li>
+                <br/>
+                </a>
+            </ul>
+            </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class=“sidebar-sticky pt-3 accodion>
+        <ul class="nav flex-column mb-2" *ngFor="let item of income;let i=index">
+            <li (dblclick)="keyUp(i)" contentEditable="true" class="sidebar-heading d-flex justify-content-between align-items-center btn btn-dark dropdown-toggle" (contextmenu)="deleteIncomeItem(i);">
+            <a style="color:#fff;">{{item.date}} | {{item.value}}</a>
+            </li>
+        </ul>
+    </div>
+
+  </div>
