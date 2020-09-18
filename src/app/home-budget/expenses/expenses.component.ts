@@ -44,11 +44,12 @@ export class ExpensesComponent implements OnInit {
     var api_expense = "expenses/details";
     this.httpDomain.get(api_expense).then((response) => {
       this.expenseDetail = response;
+      
       for (var i = 0; i < this.expenseDetail.length; i++) {
         xy.push({ name: this.expenseDetail[i]["categoryName"], value: this.expenseDetail[i]["totalValue"] });
         xData.push(this.expenseDetail[i]["categoryName"]);
         yData.push(this.expenseDetail[i]["totalValue"]);
-      }
+      }console.log(xData)
     })
 
     //1st column: Menu bar
@@ -99,39 +100,86 @@ export class ExpensesComponent implements OnInit {
     };
     //2nd column: pie chart
     this.optionPie = {
+      title: {
+          text: 'HomeBudget',
+          subtext: 'Expense',
+      },
       tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)'
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
       },
       legend: {
-        orient: 'vertical',
-        left: 10,
-        data: xData//['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+          left: 'center',
+          top: 'bottom',
+          data:xData,// ['rose1', 'rose2', 'rose3', 'rose4', 'rose5', 'rose6', 'rose7', 'rose8']
+      },
+      toolbox: {
+          show: true,
+          feature: {
+              mark: {show: true},
+              dataView: {show: true, readOnly: false},
+              magicType: {
+                  show: true,
+                  type: ['pie', 'funnel']
+              },
+              restore: {show: true},
+              saveAsImage: {show: true}
+          }
       },
       series: [
-        {
-          name: 'Expense',
-          type: 'pie',
-          radius: ['50%', '70%'],
-          avoidLabelOverlap: false,
-          label: {
-            show: false,
-            position: 'center'
+          {
+              name: 'Expense',
+              type: 'pie',
+              radius: [20, 110],
+              roseType: 'radius',
+              label: {
+                  show: false
+              },
+              emphasis: {
+                  label: {
+                      show: true
+                  }
+              },
+              data: xy
           },
-          emphasis: {
-            label: {
-              show: true,
-              fontSize: '30',
-              fontWeight: 'bold'
-            }
-          },
-          labelLine: {
-            show: false
-          },
-          data: xy
-        }
       ]
     };
+  
+
+    // this.optionPie = {
+    //   tooltip: {
+    //     trigger: 'item',
+    //     formatter: '{a} <br/>{b}: {c} ({d}%)'
+    //   },
+    //   legend: {
+    //     orient: 'vertical',
+    //     left: 10,
+    //     data: xData//['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+    //   },
+    //   series: [
+    //     {
+    //       name: 'Expense',
+    //       type: 'pie',
+    //       radius: ['50%', '70%'],
+    //       avoidLabelOverlap: false,
+    //       label: {
+    //         show: false,
+    //         position: 'center'
+    //       },
+    //       emphasis: {
+    //         label: {
+    //           show: true,
+    //           fontSize: '30',
+    //           fontWeight: 'bold'
+    //         }
+    //       },
+    //       labelLine: {
+    //         show: false
+    //       },
+    //       data: xy
+    //     }
+    //   ]
+    // };
     //1st col: dashboard
     this.budgetUsage = {
       series: [
@@ -206,18 +254,18 @@ export class ExpensesComponent implements OnInit {
 
   insertItem() {
     var api_putExpense = "expenses/add_expense";
-    // let t=[
-    //   {
-    //     categoryName:"",
-    //     expensesDetail:{bill:false,categroyName:"test",date:'',description:"test",paid:false,value:2},
-    //     totalValue:0
-    //   }
-    // ];
-    // this.expenseDetail.push(t)
-    // this.httpDomain.post(api_putExpense,t).then((response)=>{
-    //   this.newexpenseDetail=response;
-    //   console.log(this.newexpenseDetail)
-    // })
+    let t=[
+      {
+        categoryName:"test",
+        expensesDetail:{expenseDetail:{bill:false,categroyName:"test",date:'',description:"test",paid:false,value:2}},
+        totalValue:0
+      }
+    ];
+    this.expenseDetail.push(t)
+    this.httpDomain.put(api_putExpense,t).then((response)=>{
+      this.newexpenseDetail=response;
+      console.log(this.newexpenseDetail)
+    })
   }
   deleteIncomeItem(i) {
     window.event.returnValue=false;

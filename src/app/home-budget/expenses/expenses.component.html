@@ -10,7 +10,7 @@
         <ul class="list-group list-group-flush" *ngFor="let category of home">
           <li class="list-group-item" style="display:flex;justify-content: space-between;" routerLink="/home/{{category.name}}">
           <a contentEditable="false"  style="border:none;max-width:130px">{{category.name}}</a>
-          <a style="margin-top:5px;" contentEditable="false" style="border:none;min-width:20px">${{category.value}}</a>
+          <a style="margin-top:5px;" contentEditable="false" style="border:none;min-width:20px">${{category.value.toFixed(2)}}</a>
           </li>
           <!--first version to add categories.
           <li class="nav-item" style="display:flex;justify-content: space-between;" *ngIf="clickAdd">
@@ -46,7 +46,7 @@
     </div>
 
     <!--The third column:detail items-->
-    <!-- <div class="sidebar-sticky pt-3 accordion">
+     <div class="sidebar-sticky pt-3 accordion">
         <input class="btn btn-outline-dark" type="button" value="By Catagory" (click)="isCategory()">
         <input class="btn btn-outline-dark" type="button" value="By Date" (click)="isDate()" style="margin-left:5px;">
 
@@ -89,8 +89,8 @@
             </div>
             </div>
         </div>
-    </div> -->
-
+    </div> 
+<!--
     <div class=“sidebar-sticky pt-3 accodion>
         <ul class="nav flex-column mb-2" *ngFor="let item of income;let i=index">
             <li (dblclick)="keyUp(i)" contentEditable="true" class="sidebar-heading d-flex justify-content-between align-items-center btn btn-dark dropdown-toggle" (contextmenu)="deleteIncomeItem(i);">
@@ -98,5 +98,5 @@
             </li>
         </ul>
     </div>
-
+-->
   </div>

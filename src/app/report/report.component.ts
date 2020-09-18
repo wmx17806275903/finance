@@ -89,7 +89,7 @@ export class ReportComponent implements OnInit {
         { // For shadow
           type: 'bar',
           itemStyle: {
-            color: 'rgba(0,100,0,0.05)'
+            color: '#3399FF'
           },
           barGap: '-100%',
           barCategoryGap: '40%',

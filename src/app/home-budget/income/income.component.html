@@ -1,1 +1,52 @@
-<p>income works!</p>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">HomeBudget</a>
+</nav>
+<div class="light" style="margin-top:10px; display:flex;justify-content: space-between;">
+
+    <!--The first column:menu bar-->
+    <div class="col-2 sidebar-sticky pt-3 bg-light">
+      <!-- <input type="date" id="date" style="height:40px;width:100%;" value={{day}} date-date-format="MM/dd/yyyy"/> -->
+      <div class="card">
+        <ul class="list-group list-group-flush" *ngFor="let category of home">
+          <li class="list-group-item" style="display:flex;justify-content: space-between;" routerLink="/home/{{category.name}}">
+          <a contentEditable="false"  style="border:none;max-width:130px">{{category.name}}</a>
+          <a style="margin-top:5px;" contentEditable="false" style="border:none;min-width:20px">${{category.value.toFixed(2)}}</a>
+          </li>         
+        </ul>
+        <!--
+        <button type="button" class="btn btn-dark" (click)="keyUp()">Add</button>
+        -->
+      </div>
+      <div style="text-align:center;margin-top:20px">
+        <span>Available</span>
+        <br/><a>${{available}}</a>
+        <br/><a>Expense as % of Budget</a>
+      </div>
+      <div  echarts [options]="budgetUsage"></div>
+      <a class="btn btn-outline-dark" routerLink="/report" style="position: absolute;bottom: 15%;left: 64px;">Report</a>
+    </div>
+
+    <!--The second column:visualization-->
+    <div class="col-6 sidebar-sticky pt-3">
+        <input class="btn btn-outline-dark" type="button" value="bar" (click)="isBar()">
+
+        <input class="btn btn-outline-dark" type="button" value="pie" (click)="isPie()" style="margin-left:5px;">
+        <div class="card"></div>
+        <div id="main" *ngIf="showBar" echarts [options]="option"></div>
+        <div id="pan" *ngIf="!showBar" echarts [options]="optionPie"></div>
+    </div>
+
+    <!--The third column:detail items-->
+     <div class="sidebar-sticky pt-3 accordion">
+        <div class=“class="row">
+            <ul class="nav flex-column mb-2" *ngFor="let item of income;let i=index">
+                <li (dblclick)="keyUp(i)" contentEditable="true" class="sidebar-heading d-flex justify-content-between align-items-center btn btn-dark dropdown-toggle" (contextmenu)="deleteIncomeItem(i);">
+                <a style="color:#fff;">{{item.date}}</a>
+                <a>${{item.value}}</a>
+                </li>
+            </ul>
+        </div>
+    </div> 
+
+  </div>
+

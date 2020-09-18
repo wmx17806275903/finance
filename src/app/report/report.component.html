@@ -16,7 +16,7 @@
               <li class="list-group-item" style="display:flex;justify-content: space-between;">
               <!-- <input contentEditable="true" value={{category.name}} style="border:none;max-width:130px"/> -->
               <span>{{category.name}}</span>
-              <span>{{category.value.toFixed(2)}}</span>
+              <span>${{category.value.toFixed(2)}}</span>
             </li>
             </ul>
         </div>
@@ -70,9 +70,7 @@
           </button>
         </div> -->
       </div>
-
-      <div id="main"  echarts [options]="option"></div>
-
+     
       <h2>Expenses Reports</h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -94,6 +92,7 @@
           </tbody>
         </table>
       </div>
+       <div id="main"  echarts [options]="option"></div>
     </main>
   </div>
 </div>
