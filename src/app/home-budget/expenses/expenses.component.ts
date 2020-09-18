@@ -120,7 +120,7 @@ export class ExpensesComponent implements OnInit {
               dataView: {show: true, readOnly: false},
               magicType: {
                   show: true,
-                  type: ['pie', 'funnel']
+                  type: ['pie']
               },
               restore: {show: true},
               saveAsImage: {show: true}
@@ -130,15 +130,21 @@ export class ExpensesComponent implements OnInit {
           {
               name: 'Expense',
               type: 'pie',
-              radius: [20, 110],
+              radius: ['40%', '60%'],
               roseType: 'radius',
               label: {
-                  show: false
+                show: false,
+                position: 'center'
               },
               emphasis: {
-                  label: {
-                      show: true
-                  }
+                label: {
+                  show: true,
+                  fontSize: '30',
+                  fontWeight: 'bold'
+                }
+              },
+              labelLine: {
+                show: false
               },
               data: xy
           },
@@ -242,9 +248,12 @@ export class ExpensesComponent implements OnInit {
   //3rd: Add new item in the expense category
   keyUp(index) {
     // this.clickAdd=true;
-    let newData = { bill: false, categoryName: "test", date: '', description: "test", paid: false, value: 2 };
+    if(index>=0){
+    let newData = { bill: false, categoryName: this.expenseDetail[index]['categoryName'], date: '', description: "test", paid: false, value: 2 };
     this.expenseDetail[index].expenseItems.push(newData);
     this.httpDomain.put("expenses/add_expense",newData)
+    console.log("keyUP")
+  }
 
   }
 
@@ -253,14 +262,15 @@ export class ExpensesComponent implements OnInit {
   }
 
   insertItem() {
-    var api_putExpense = "expenses/add_expense";
-    let t=[
+    //var api_putExpense = "expenses/add_expense";
+    var api_putExpense ="expenses/category_add";
+    let t=
       {
         categoryName:"test",
         expensesDetail:{expenseDetail:{bill:false,categroyName:"test",date:'',description:"test",paid:false,value:2}},
         totalValue:0
       }
-    ];
+    
     this.expenseDetail.push(t)
     this.httpDomain.put(api_putExpense,t).then((response)=>{
       this.newexpenseDetail=response;
@@ -283,9 +293,9 @@ export class ExpensesComponent implements OnInit {
         'Content-Type': 'application/json',
       }),
     };
-    // this.httpDomain.delete(api_delExpense).then((response)=>{
-    //   this.expenseDetail=response;
-    // })
+    this.httpDomain.delete(api_delExpense,this.expenseDetail[i]).then((response)=>{
+      this.expenseDetail=response;
+    })
 
   }
 }

@@ -49,9 +49,12 @@
      <div class="sidebar-sticky pt-3 accordion">
         <input class="btn btn-outline-dark" type="button" value="By Catagory" (click)="isCategory()">
         <input class="btn btn-outline-dark" type="button" value="By Date" (click)="isDate()" style="margin-left:5px;">
-
+<!--
         <svg (click)="insertItem()" style="float:right;margin-top:5px;" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-border-width col-md-3 offset-md-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 3.5A.5.5 0 0 1 .5 3h15a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-2zm0 5A.5.5 0 0 1 .5 8h15a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1zm0 4a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"/>
+        </svg>-->
+        <svg (click)="insertItem()" style="float:right;" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-border-width col-md-3 offset-md-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
         </svg>
         <div class="card"></div>
 
@@ -67,7 +70,7 @@
                     <li contentEditable="true" class="list-group-item nav-item" style="display:flex;justify-content: space-between;" >
                     <a class="nav-link active">
                         <span data-feather="home"></span>
-                        {{detail.categoryName}} <span class="sr-only">(current)</span>
+                        {{detail.description}} <span class="sr-only">(current)</span>
                     </a>
                         <a>${{detail.value}}</a>
                     </li>
